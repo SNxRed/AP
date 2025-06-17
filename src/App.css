@@ -123,3 +123,58 @@ html {
   float: right;
   margin-left: 200px;
 }
+
+/*esto es lo que se agrego ahora ultimo*/
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+
+.bg-primary {
+  background-color: #7f00b2;
+}
+
+.bg-primary-hover:hover {
+  background-color: #6c009f;
+}
+
+.aspect-w-16 {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+}
+
+.aspect-h-9 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* Estilos para la tabla de medidas */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f8f9fa;
+}
+
+/* Estilos para los posts del blog */
+.post {
+  transition: box-shadow 0.3s ease;
+}
+
+.post:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
