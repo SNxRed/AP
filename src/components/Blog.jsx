@@ -1,4 +1,3 @@
-// components/Blog.jsx
 import React, { useState } from 'react';
 import Navbar from './Navbar';
 
@@ -31,10 +30,10 @@ function Blog({ onLogout }) {
     setNewPost(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleCommentChange = (postId, e) => {
+  const handleCommentChange = (postId, value) => {
     setNewComments(prev => ({
       ...prev,
-      [postId]: e.target.value
+      [postId]: value
     }));
   };
 
@@ -81,7 +80,7 @@ function Blog({ onLogout }) {
 
   return (
     <div>
-      <Navbar showLogout={true} onLogout={onLogout} />
+      <Navbar isAuthenticated={true} onLogout={onLogout} />
       
       <div className="container mx-auto px-4 py-8">
         <div className="bg-white rounded-lg shadow-md p-6 mb-6">
@@ -92,7 +91,7 @@ function Blog({ onLogout }) {
               <textarea
                 name="content"
                 value={newPost.content}
-                onChange={handlePostChange}
+                onChange={(e) => handlePostChange(e)}
                 placeholder="¿Qué estás pensando?"
                 className="w-full px-3 py-2 border rounded"
                 rows="3"
@@ -107,7 +106,7 @@ function Blog({ onLogout }) {
                   type="url"
                   name="image"
                   value={newPost.image}
-                  onChange={handlePostChange}
+                  onChange={(e) => handlePostChange(e)}
                   placeholder="https://ejemplo.com/imagen.jpg"
                   className="w-full px-3 py-2 border rounded"
                 />
@@ -119,7 +118,7 @@ function Blog({ onLogout }) {
                   type="url"
                   name="video"
                   value={newPost.video}
-                  onChange={handlePostChange}
+                  onChange={(e) => handlePostChange(e)}
                   placeholder="https://youtube.com/watch?v=..."
                   className="w-full px-3 py-2 border rounded"
                 />
@@ -136,7 +135,7 @@ function Blog({ onLogout }) {
           
           <div className="space-y-6">
             {posts.map(post => (
-              <div key={post.id} className="border rounded-lg p-4">
+              <div key={post.id} className="border rounded-lg p-4 post">
                 <div className="flex items-center mb-3">
                   <div className="bg-[#7f00b2] text-white rounded-full w-10 h-10 flex items-center justify-center mr-3">
                     {post.author.charAt(0)}
@@ -156,11 +155,13 @@ function Blog({ onLogout }) {
                 )}
                 
                 {post.video && (
-                  <div className="mb-3 aspect-w-16 aspect-h-9">
+                  <div className="mb-3 relative pb-[56.25%] h-0">
                     <iframe
-                      src={post.video.replace('watch?v=', 'embed/')}
+                      src={post.video.includes('youtube.com') ? 
+                        post.video.replace('watch?v=', 'embed/') : 
+                        post.video}
                       title="Video"
-                      className="w-full h-64 rounded"
+                      className="absolute top-0 left-0 w-full h-full rounded"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                     ></iframe>
@@ -188,7 +189,7 @@ function Blog({ onLogout }) {
                     <input
                       type="text"
                       value={newComments[post.id] || ''}
-                      onChange={(e) => handleCommentChange(post.id, e)}
+                      onChange={(e) => handleCommentChange(post.id, e.target.value)}
                       placeholder="Añade un comentario..."
                       className="flex-grow px-3 py-2 border rounded-l"
                     />
