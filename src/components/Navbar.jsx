@@ -5,45 +5,60 @@ function Navbar({ isAuthenticated, onLogout }) {
   const navigate = useNavigate();
 
   return (
-    <nav className="nav flex items-center justify-between px-4">
-      <div className="flex items-center">
+    <nav className="nav flex items-center justify-between px-6 py-4 bg-[#7f00b2]">
+      <div className="flex items-center space-x-8"> {/* Contenedor flexible para logo y botones */}
+        {/* Logo */}
         <Link to="/" className="flex items-center">
-          <img className='logo' src="/img/logoo.png" alt='logo'/>
+          <img className='logo h-10' src="/img/logoo.png" alt='logo' />
         </Link>
-      </div>
-      
-      <div className="flex items-center space-x-4">
-        <Link to="/" className="text-white hover:text-gray-200">
-          Inicio
-        </Link>
-        
-        {isAuthenticated ? (
-          <>
-            <Link to="/blog" className="text-white hover:text-gray-200">
-              Blog
-            </Link>
-            <Link to="/perfil" className="text-white hover:text-gray-200">
-              Perfil
-            </Link>
-            <button
-              onClick={() => {
-                onLogout();
-                navigate('/');
-              }}
-              className="bg-white text-[#7f00b2] px-4 py-2 rounded hover:bg-gray-200"
-            >
-              Cerrar sesión
-            </button>
-          </>
-        ) : (
+
+        {/* Botones de navegación */}
+        <div className="flex items-center space-x-4"> {/* Contenedor para los botones */}
           <Link 
-            to="/login" 
-            className="bg-white text-[#7f00b2] px-4 py-2 rounded hover:bg-gray-200"
+            to="/" 
+            className="text-white px-4 py-2 rounded-lg border border-transparent hover:bg-white hover:text-[#7f00b2] transition-all duration-300"
           >
-            Iniciar sesión
+            Inicio
           </Link>
-        )}
+          
+          {isAuthenticated && (
+            <>
+              <Link 
+                to="/blog" 
+                className="text-white px-4 py-2 rounded-lg border border-transparent hover:bg-white hover:text-[#7f00b2] transition-all duration-300"
+              >
+                Blog
+              </Link>
+              <Link 
+                to="/perfil" 
+                className="text-white px-4 py-2 rounded-lg border border-transparent hover:bg-white hover:text-[#7f00b2] transition-all duration-300"
+              >
+                Perfil
+              </Link>
+            </>
+          )}
+        </div>
       </div>
+
+      {/* Botón de Login/Cerrar sesión (derecha) */}
+      {isAuthenticated ? (
+        <button
+          onClick={() => {
+            onLogout();
+            navigate('/');
+          }}
+          className="text-white px-4 py-2 rounded-lg border border-white hover:bg-white hover:text-[#7f00b2] transition-all duration-300"
+        >
+          Cerrar sesión
+        </button>
+      ) : (
+        <Link 
+          to="/login" 
+          className="text-white px-4 py-2 rounded-lg border border-white hover:bg-white hover:text-[#7f00b2] transition-all duration-300"
+        >
+          Iniciar sesión
+        </Link>
+      )}
     </nav>
   );
 }
