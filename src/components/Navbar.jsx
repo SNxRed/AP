@@ -6,11 +6,17 @@ function Navbar({ isAuthenticated, onLogout }) {
 
   return (
     <nav className="nav flex items-center justify-between px-6 py-4 bg-[#7f00b2]">
-      <div className="flex items-center space-x-8"> {/* Contenedor flexible para logo y botones */}
-        {/* Logo */}
-        <Link to="/" className="flex items-center">
-          <img className='logo h-10' src="/img/logoo.png" alt='logo' />
-        </Link>
+      <div className="flex items-center space-x-8">
+        {/* Logo - Cambiado para evitar el hover */}
+        <div className="flex items-center"> {/* Eliminado el Link que envolvía el logo */}
+          <img 
+            className='logo h-10 hover:opacity-90 transition-opacity duration-200' 
+            src="/img/logoo.png" 
+            alt='logo' 
+            onClick={() => navigate('/')} // Añadido onClick para mantener la navegación
+            style={{ cursor: 'pointer' }} // Para indicar que es clickeable
+          />
+        </div>
 
         {/* Botones de navegación */}
         <div className="flex items-center space-x-4"> {/* Contenedor para los botones */}
