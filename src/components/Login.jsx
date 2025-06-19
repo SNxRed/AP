@@ -1,16 +1,13 @@
-// components/Login.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 
 function Login({ onLogin }) {
   const navigate = useNavigate();
-
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  // Usuario y contraseña válidos (hardcodeados)
   const validUser = 'admin';
   const validPass = '1234';
 
@@ -18,7 +15,7 @@ function Login({ onLogin }) {
     e.preventDefault();
     if (username === validUser && password === validPass) {
       onLogin();
-      navigate('/inicio');
+      navigate('/perfil');
     } else {
       setError('Usuario o contraseña incorrectos');
     }
@@ -26,7 +23,7 @@ function Login({ onLogin }) {
 
   return (
     <div>
-      <Navbar showLogout={false} />
+      <Navbar isAuthenticated={false} />
       <div className="login-wrap flex flex-col items-center justify-center h-[80vh]">
         <h2 className="text-2xl mb-4">Iniciar Sesión</h2>
 

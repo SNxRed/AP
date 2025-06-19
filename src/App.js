@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './components/Login';
 import Inicio from './components/Inicio';
-import './App.css'
-
+import Perfil from './components/Perfil';
+import Blog from './components/Blog';
+import './App.css';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -14,17 +15,23 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
-        <Route path="/login" element={<Login onLogin={handleLogin} />} />
-        <Route
-          path="/inicio"
+        <Route path="/" element={<Inicio isAuthenticated={isAuthenticated} onLogout={handleLogout} />} />
+        <Route path="/login" element={isAuthenticated ? <Navigate to="/perfil" /> : <Login onLogin={handleLogin} />} />
+        <Route 
+          path="/perfil" 
           element={
-            isAuthenticated ? (
-              <Inicio onLogout={handleLogout} />
-            ) : (
+            isAuthenticated ? 
+              <Perfil onLogout={handleLogout} /> : 
               <Navigate to="/login" />
-            )
-          }
+          } 
+        />
+        <Route 
+          path="/blog" 
+          element={
+            isAuthenticated ? 
+              <Blog onLogout={handleLogout} /> : 
+              <Navigate to="/login" />
+          } 
         />
       </Routes>
     </Router>
