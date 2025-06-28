@@ -22,7 +22,6 @@ function Inicio({ isAuthenticated, onLogout }) {
           </p>
         </div>
 
-        {/* Galería horizontal */}
         <div className="horizontal-gallery-container">
           <h3 className="text-2xl font-semibold mb-6 text-center">Nuestras Instalaciones</h3>
           <div className="horizontal-gallery">
