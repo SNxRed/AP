@@ -7,29 +7,37 @@ import Blog from './components/Blog';
 import './App.css';
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
 
-  const handleLogin = () => setIsAuthenticated(true);
-  const handleLogout = () => setIsAuthenticated(false);
+  const handleLogin = (userData) => {
+    setUser(userData);
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+  };
 
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Inicio isAuthenticated={isAuthenticated} onLogout={handleLogout} />} />
-        <Route path="/login" element={isAuthenticated ? <Navigate to="/perfil" /> : <Login onLogin={handleLogin} />} />
+        <Route path="/" element={<Inicio user={user} onLogout={handleLogout} />} />
+        <Route 
+          path="/login" 
+          element={user ? <Navigate to="/perfil" /> : <Login onLogin={handleLogin} />} 
+        />
         <Route 
           path="/perfil" 
           element={
-            isAuthenticated ? 
-              <Perfil onLogout={handleLogout} /> : 
+            user ? 
+              <Perfil user={user} onLogout={handleLogout} /> : 
               <Navigate to="/login" />
           } 
         />
         <Route 
           path="/blog" 
           element={
-            isAuthenticated ? 
-              <Blog onLogout={handleLogout} /> : 
+            user ? 
+              <Blog user={user} onLogout={handleLogout} /> : 
               <Navigate to="/login" />
           } 
         />

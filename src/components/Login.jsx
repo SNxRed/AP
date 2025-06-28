@@ -8,13 +8,22 @@ function Login({ onLogin }) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const validUser = 'admin';
-  const validPass = '1234';
+  // Base de datos de usuarios
+  const users = [
+    { username: 'admin', password: '1234', role: 'admin', name: 'Administrador' },
+    { username: 'cliente', password: '1234', role: 'cliente', name: 'Cliente Regular' }
+  ];
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (username === validUser && password === validPass) {
-      onLogin();
+    const foundUser = users.find(u => u.username === username && u.password === password);
+    
+    if (foundUser) {
+      onLogin({
+        username: foundUser.username,
+        name: foundUser.name,
+        role: foundUser.role
+      });
       navigate('/perfil');
     } else {
       setError('Usuario o contraseña incorrectos');

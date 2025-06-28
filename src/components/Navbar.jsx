@@ -1,25 +1,23 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-function Navbar({ isAuthenticated, onLogout }) {
+function Navbar({ user, onLogout }) {
   const navigate = useNavigate();
 
   return (
     <nav className="nav flex items-center justify-between px-6 py-4 bg-[#7f00b2]">
       <div className="flex items-center space-x-8">
-        {/* Logo - Cambiado para evitar el hover */}
-        <div className="flex items-center"> {/* Eliminado el Link que envolvía el logo */}
+        <div className="flex items-center">
           <img 
             className='logo h-10 hover:opacity-90 transition-opacity duration-200' 
             src="/img/logoo.png" 
             alt='logo' 
-            onClick={() => navigate('/')} // Añadido onClick para mantener la navegación
-            style={{ cursor: 'pointer' }} // Para indicar que es clickeable
+            onClick={() => navigate('/')}
+            style={{ cursor: 'pointer' }}
           />
         </div>
 
-        {/* Botones de navegación */}
-        <div className="flex items-center space-x-4"> {/* Contenedor para los botones */}
+        <div className="flex items-center space-x-4">
           <Link 
             to="/" 
             className="text-white px-4 py-2 rounded-lg border border-transparent hover:bg-white hover:text-[#7f00b2] transition-all duration-300"
@@ -27,7 +25,7 @@ function Navbar({ isAuthenticated, onLogout }) {
             Inicio
           </Link>
           
-          {isAuthenticated && (
+          {user && (
             <>
               <Link 
                 to="/blog" 
@@ -41,22 +39,32 @@ function Navbar({ isAuthenticated, onLogout }) {
               >
                 Perfil
               </Link>
+              {user.role === 'admin' && (
+                <Link 
+                  to="/admin" 
+                  className="text-white px-4 py-2 rounded-lg border border-transparent hover:bg-white hover:text-[#7f00b2] transition-all duration-300"
+                >
+                  Admin
+                </Link>
+              )}
             </>
           )}
         </div>
       </div>
 
-      {/* Botón de Login/Cerrar sesión (derecha) */}
-      {isAuthenticated ? (
-        <button
-          onClick={() => {
-            onLogout();
-            navigate('/');
-          }}
-          className="text-white px-4 py-2 rounded-lg border border-white hover:bg-white hover:text-[#7f00b2] transition-all duration-300"
-        >
-          Cerrar sesión
-        </button>
+      {user ? (
+        <div className="flex items-center space-x-4">
+          <span className="text-white">Hola, {user.name}</span>
+          <button
+            onClick={() => {
+              onLogout();
+              navigate('/');
+            }}
+            className="text-white px-4 py-2 rounded-lg border border-white hover:bg-white hover:text-[#7f00b2] transition-all duration-300"
+          >
+            Cerrar sesión
+          </button>
+        </div>
       ) : (
         <Link 
           to="/login" 

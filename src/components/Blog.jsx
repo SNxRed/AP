@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from './Navbar';
 
-function Blog({ onLogout }) {
+function Blog({ user, onLogout }) {
   const [posts, setPosts] = useState([
     {
       id: 1,
@@ -56,7 +56,7 @@ function Blog({ onLogout }) {
     setTimeout(() => {
       const post = {
         id: posts.length + 1,
-        author: 'UsuarioActual',
+        author: user.name,
         date: new Date().toLocaleDateString('es-ES', { 
           year: 'numeric', 
           month: 'long', 
@@ -88,7 +88,7 @@ function Blog({ onLogout }) {
             ...post.comments,
             {
               id: post.comments.length + 1,
-              author: 'Tú',
+              author: user.name,
               text: commentText
             }
           ]
@@ -102,59 +102,67 @@ function Blog({ onLogout }) {
 
   return (
     <div className="blog-app">
-      <Navbar isAuthenticated={true} onLogout={onLogout} />
+      <Navbar user={user} onLogout={onLogout} />
       
       <div className="blog-container">
         <div className="blog-content">
           <h1 className="blog-title">Comunidad Fitness</h1>
           
-          <form onSubmit={addPost} className="post-form">
-            <div className="form-group">
-              <textarea
-                name="content"
-                value={newPost.content}
-                onChange={(e) => handlePostChange(e)}
-                placeholder="Comparte tus pensamientos, logros o consejos..."
-                className="post-input"
-                rows="4"
-                required
-              />
-            </div>
-            
-            <div className="media-inputs">
-              <div className="input-group">
-                <label>URL de imagen (opcional)</label>
-                <input
-                  type="url"
-                  name="image"
-                  value={newPost.image}
-                  onChange={(e) => handlePostChange(e)}
-                  placeholder="https://ejemplo.com/imagen.jpg"
-                  className="media-input"
-                />
+          {user.role === 'admin' && (
+            <>
+              <div className="admin-notice mb-6 p-4 bg-blue-100 border-l-4 border-blue-500">
+                <p className="text-blue-700">Modo administrador: Puedes crear publicaciones.</p>
               </div>
               
-              <div className="input-group">
-                <label>URL de video (opcional)</label>
-                <input
-                  type="url"
-                  name="video"
-                  value={newPost.video}
-                  onChange={(e) => handlePostChange(e)}
-                  placeholder="https://youtube.com/watch?v=..."
-                  className="media-input"
-                />
-              </div>
-            </div>
-            
-            <button
-              type="submit"
-              className="submit-btn"
-              disabled={isPosting}
-            >
-              {isPosting ? 'Publicando...' : 'Publicar'}
-            </button>
-          </form>
+              <form onSubmit={addPost} className="post-form">
+                <div className="form-group">
+                  <textarea
+                    name="content"
+                    value={newPost.content}
+                    onChange={handlePostChange}
+                    placeholder="Escribe una nueva publicación..."
+                    className="post-input"
+                    rows="4"
+                    required
+                  />
+                </div>
+                
+                <div className="media-inputs">
+                  <div className="input-group">
+                    <label>URL de imagen (opcional)</label>
+                    <input
+                      type="url"
+                      name="image"
+                      value={newPost.image}
+                      onChange={handlePostChange}
+                      placeholder="https://ejemplo.com/imagen.jpg"
+                      className="media-input"
+                    />
+                  </div>
+                  
+                  <div className="input-group">
+                    <label>URL de video (opcional)</label>
+                    <input
+                      type="url"
+                      name="video"
+                      value={newPost.video}
+                      onChange={handlePostChange}
+                      placeholder="https://youtube.com/watch?v=..."
+                      className="media-input"
+                    />
+                  </div>
+                </div>
+                
+                <button
+                  type="submit"
+                  className="submit-btn"
+                  disabled={isPosting}
+                >
+                  {isPosting ? 'Publicando...' : 'Publicar'}
+                </button>
+              </form>
+            </>
+          )}
           
           <div className="posts-list">
             {posts.map(post => (
@@ -208,21 +216,23 @@ function Blog({ onLogout }) {
                     ))}
                   </div>
                   
-                  <div className="comment-form">
-                    <input
-                      type="text"
-                      value={newComments[post.id] || ''}
-                      onChange={(e) => handleCommentChange(post.id, e.target.value)}
-                      placeholder="Escribe un comentario..."
-                      className="comment-input"
-                    />
-                    <button
-                      onClick={() => addComment(post.id)}
-                      className="comment-btn"
-                    >
-                      Enviar
-                    </button>
-                  </div>
+                  {user && (
+                    <div className="comment-form">
+                      <input
+                        type="text"
+                        value={newComments[post.id] || ''}
+                        onChange={(e) => handleCommentChange(post.id, e.target.value)}
+                        placeholder="Escribe un comentario..."
+                        className="comment-input"
+                      />
+                      <button
+                        onClick={() => addComment(post.id)}
+                        className="comment-btn"
+                      >
+                        Enviar
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
