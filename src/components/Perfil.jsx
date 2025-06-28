@@ -100,20 +100,40 @@ function Perfil({ user, onLogout }) {
                       </div>
                       <div className="medida-details">
                         <div className="medida-item">
-                          <span className="medida-label">Peso</span>
-                          <span className="medida-value">{item.peso} kg</span>
-                        </div>
-                        <div className="medida-item">
                           <span className="medida-label">Altura</span>
                           <span className="medida-value">{item.altura} cm</span>
                         </div>
                         <div className="medida-item">
-                          <span className="medida-label">Bíceps</span>
-                          <span className="medida-value">{item.biceps} cm</span>
+                          <span className="medida-label">Peso</span>
+                          <span className="medida-value">{item.peso} kg</span>
                         </div>
                         <div className="medida-item">
-                          <span className="medida-label">Pecho</span>
-                          <span className="medida-value">{item.pecho} cm</span>
+                          <span className="medida-label">Brazo</span>
+                          <span className="medida-value">{item.brazo} cm</span>
+                        </div>
+                        <div className="medida-item">
+                          <span className="medida-label">Piernas</span>
+                          <span className="medida-value">{item.piernas} cm</span>
+                        </div>
+                        <div className="medida-item">
+                          <span className="medida-label">Cintura</span>
+                          <span className="medida-value">{item.cintura} cm</span>
+                        </div>
+                        <div className="medida-item">
+                          <span className="medida-label">Abdomen</span>
+                          <span className="medida-value">{item.abdomen} cm</span>
+                        </div>
+                        <div className="medida-item">
+                          <span className="medida-label">Gemelo</span>
+                          <span className="medida-value">{item.gemelo} cm</span>
+                        </div>
+                        <div className="medida-item">
+                          <span className="medida-label">Espalda</span>
+                          <span className="medida-value">{item.espalda} cm</span>
+                        </div>
+                        <div className="medida-item">
+                          <span className="medida-label">Torso</span>
+                          <span className="medida-value">{item.torso} cm</span>
                         </div>
                       </div>
                     </div>
