@@ -39,13 +39,27 @@ function Navbar({ user, onLogout }) {
               >
                 Perfil
               </Link>
+              <Link 
+                to="/my-files" 
+                className="text-white px-4 py-2 rounded-lg border border-transparent hover:bg-white hover:text-[#7f00b2] transition-all duration-300"
+              >
+                Mis Archivos
+              </Link>
               {user.role === 'admin' && (
-                <Link 
-                  to="/admin" 
-                  className="text-white px-4 py-2 rounded-lg border border-transparent hover:bg-white hover:text-[#7f00b2] transition-all duration-300"
-                >
-                  Admin
-                </Link>
+                <>
+                  <Link 
+                    to="/admin" 
+                    className="text-white px-4 py-2 rounded-lg border border-transparent hover:bg-white hover:text-[#7f00b2] transition-all duration-300"
+                  >
+                    Invitar
+                  </Link>
+                  <Link 
+                    to="/file-management" 
+                    className="text-white px-4 py-2 rounded-lg border border-transparent hover:bg-white hover:text-[#7f00b2] transition-all duration-300"
+                  >
+                    Archivos
+                  </Link>
+                </>
               )}
             </>
           )}

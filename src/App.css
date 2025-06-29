@@ -977,3 +977,198 @@ html {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* Estilos para el panel de administración */
+.admin-panel-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.admin-title {
+  color: #7f00b2;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+.invite-section {
+  background-color: white;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.invite-section h2 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.invite-form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #555;
+}
+
+.email-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.email-input:focus {
+  outline: none;
+  border-color: #7f00b2;
+  box-shadow: 0 0 0 2px rgba(127, 0, 178, 0.1);
+}
+
+.invite-btn {
+  background-color: #7f00b2;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+.invite-btn:hover {
+  background-color: #6c009f;
+}
+
+.invite-btn:disabled {
+  background-color: #b39fcc;
+  cursor: not-allowed;
+}
+
+.message {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #e6f7e6;
+  border-left: 4px solid #4CAF50;
+  color: #333;
+  text-align: center;
+  border-radius: 4px;
+}
+
+/* en caso de */
+
+/* Estilos para gestión de archivos */
+.file-management-container, .user-files-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.upload-section, .files-list {
+  background-color: white;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.search-input, .file-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.file-info {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 5px;
+}
+
+.upload-btn, .download-btn {
+  background-color: #7f00b2;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.upload-btn:hover, .download-btn:hover {
+  background-color: #6c009f;
+}
+
+.upload-btn:disabled {
+  background-color: #b39fcc;
+}
+
+.message {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.message.success {
+  background-color: #e6f7e6;
+  border-left: 4px solid #4CAF50;
+}
+
+/* Estilos para lista de archivos */
+.file-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.file-icon {
+  font-size: 1.5rem;
+}
+
+.file-icon.pdf {
+  color: #d32f2f;
+}
+
+.file-icon.excel {
+  color: #1e8449;
+}
+
+.file-card h3 {
+  margin: 0 0 5px;
+  font-size: 1rem;
+}
+
+.file-card p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #777;
+}
+
+.no-files {
+  text-align: center;
+  color: #777;
+  padding: 30px 0;
+}
