@@ -8,6 +8,7 @@ function Login({ onLogin }) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+<<<<<<< HEAD
   // Base de datos de usuarios
   const users = [
     { username: 'admin', password: '1234', role: 'admin', name: 'Administrador' },
@@ -24,6 +25,15 @@ function Login({ onLogin }) {
         name: foundUser.name,
         role: foundUser.role
       });
+=======
+  const validUser = 'admin';
+  const validPass = '1234';
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (username === validUser && password === validPass) {
+      onLogin();
+>>>>>>> 11b48f76abc03e8c7548e7d2d9b80dd79e17c21b
       navigate('/perfil');
     } else {
       setError('Usuario o contraseña incorrectos');

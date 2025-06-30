@@ -4,9 +4,12 @@ import Login from './components/Login';
 import Inicio from './components/Inicio';
 import Perfil from './components/Perfil';
 import Blog from './components/Blog';
+<<<<<<< HEAD
 import AdminPanel from './components/AdminPanel';
 import FileManagement from './components/FileManagement';
 import UserFiles from './components/UserFiles';
+=======
+>>>>>>> 11b48f76abc03e8c7548e7d2d9b80dd79e17c21b
 import './App.css';
 
 function App() {
@@ -23,6 +26,7 @@ function App() {
   return (
     <Router>
       <Routes>
+<<<<<<< HEAD
         {/* Ruta principal */}
         <Route path="/" element={<Inicio user={user} onLogout={handleLogout} />} />
         
@@ -30,6 +34,25 @@ function App() {
         <Route 
           path="/login" 
           element={user ? <Navigate to="/perfil" /> : <Login onLogin={handleLogin} />} 
+=======
+        <Route path="/" element={<Inicio isAuthenticated={isAuthenticated} onLogout={handleLogout} />} />
+        <Route path="/login" element={isAuthenticated ? <Navigate to="/perfil" /> : <Login onLogin={handleLogin} />} />
+        <Route 
+          path="/perfil" 
+          element={
+            isAuthenticated ? 
+              <Perfil onLogout={handleLogout} /> : 
+              <Navigate to="/login" />
+          } 
+        />
+        <Route 
+          path="/blog" 
+          element={
+            isAuthenticated ? 
+              <Blog onLogout={handleLogout} /> : 
+              <Navigate to="/login" />
+          } 
+>>>>>>> 11b48f76abc03e8c7548e7d2d9b80dd79e17c21b
         />
         
         {/* Perfil del usuario */}

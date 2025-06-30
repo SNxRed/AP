@@ -1,7 +1,11 @@
 import React from 'react';
 import Navbar from './Navbar';
 
+<<<<<<< HEAD
 function Inicio({ user, onLogout }) {
+=======
+function Inicio({ isAuthenticated, onLogout }) {
+>>>>>>> 11b48f76abc03e8c7548e7d2d9b80dd79e17c21b
   const galleryImages = [
     { id: 1, src: '/img/gym1.jpg', alt: 'Entrenamiento 1' },
     { id: 2, src: '/img/gym2.jpg', alt: 'Entrenamiento 2' },
@@ -10,13 +14,28 @@ function Inicio({ user, onLogout }) {
 
   return (
     <div>
+<<<<<<< HEAD
       <Navbar user={user} onLogout={onLogout} />
+=======
+      <Navbar isAuthenticated={isAuthenticated} onLogout={onLogout} />
+>>>>>>> 11b48f76abc03e8c7548e7d2d9b80dd79e17c21b
       
       <div className="inicio-container">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold mb-4">Bienvenido a nuestra aplicación</h2>
+<<<<<<< HEAD
         </div>
 
+=======
+          <p className="text-lg">
+            {isAuthenticated ? 
+              'Explora nuestras funcionalidades' : 
+              'Inicia sesión para acceder a todas las funcionalidades'}
+          </p>
+        </div>
+
+        {/* Galería horizontal */}
+>>>>>>> 11b48f76abc03e8c7548e7d2d9b80dd79e17c21b
         <div className="horizontal-gallery-container">
           <h3 className="text-2xl font-semibold mb-6 text-center">Nuestras Instalaciones</h3>
           <div className="horizontal-gallery">
