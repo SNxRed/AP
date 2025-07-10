@@ -45,6 +45,12 @@ function Navbar({ user, onLogout }) {
               >
                 Mis Archivos
               </Link>
+              <Link 
+                to="/settings" 
+                className="text-white px-4 py-2 rounded-lg border border-transparent hover:bg-white hover:text-[#7f00b2] transition-all duration-300"
+              >
+                Configuración
+              </Link>
               {user.role === 'admin' && (
                 <>
                   <Link 

@@ -7,6 +7,7 @@ import Blog from './components/Blog';
 import AdminPanel from './components/AdminPanel';
 import FileManagement from './components/FileManagement';
 import UserFiles from './components/UserFiles';
+import UserSettings from './components/UserSettings';
 import './App.css';
 
 function App() {
@@ -48,6 +49,16 @@ function App() {
           element={
             user ? 
               <Blog user={user} onLogout={handleLogout} /> : 
+              <Navigate to="/login" />
+          } 
+        />
+        
+        {/* Configuración de usuario */}
+        <Route 
+          path="/settings" 
+          element={
+            user ? 
+              <UserSettings user={user} onLogout={handleLogout} /> : 
               <Navigate to="/login" />
           } 
         />
